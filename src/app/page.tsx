@@ -1,11 +1,10 @@
 import { Container } from "@/components/Container";
 import { Header } from "@/components/Header";
+import { PostCoverImage } from "@/components/PostCoverImage";
 import { PostHeading } from "@/components/PostHeading";
 import { PostsList } from "@/components/PostsList";
 import { SpinLoader } from "@/components/SpinLoader";
 import clsx from "clsx";
-import Image from "next/image";
-import Link from "next/link";
 import { Suspense } from "react";
 
 export default async function HomePage() {
@@ -20,16 +19,11 @@ export default async function HomePage() {
           "group"
         )}
       >
-        <Link className="w-full h-full overflow-hidden rounded-xl" href="#">
-          <Image
-            className="w-full h-full object-cover object-center group-hover:scale-105 transition"
-            src="/images/bryen_0.webp"
-            width={1200}
-            height={720}
-            alt="Título do post"
-            priority
-          />
-        </Link>
+        <PostCoverImage
+          src="/images/bryen_5.webp"
+          href="#"
+          alt="Título do post"
+        />
 
         <div className="flex flex-col gap-4 sm:justify-center">
           <time className="text-slate-600 text-sm/tight" dateTime="2026-06-15">
