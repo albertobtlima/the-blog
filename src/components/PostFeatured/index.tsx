@@ -1,10 +1,13 @@
 import clsx from "clsx";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
+import { findAllPublicPosts } from "@/lib/post/queries";
 
-export function PostFeatured() {
-  const slug = "qualquer";
-  const postLink = `/post/${slug}`;
+export async function PostFeatured() {
+  const posts = await findAllPublicPosts();
+  const post = posts[0];
+
+  const postLink = `/post/${post.slug}`;
 
   return (
     <section
@@ -15,15 +18,15 @@ export function PostFeatured() {
       )}
     >
       <PostCoverImage
-        src="/images/bryen_5.webp"
+        src={post.coverImageUrl}
         href={postLink}
-        alt="Título do post"
+        alt={post.title}
       />
 
       <PostSummary
         postHeading="h1"
         postLink={postLink}
-        createdAt={createdAt}
+        createdAt={post.createdAt}
         title={post.title}
         excerpt={post.excerpt}
       />
