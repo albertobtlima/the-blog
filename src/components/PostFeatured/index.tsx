@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { PostCoverImage } from "../PostCoverImage";
-import { PostHeading } from "../PostHeading";
+import { PostSummary } from "../PostSummary";
 
 export function PostFeatured() {
   const slug = "qualquer";
@@ -20,22 +20,13 @@ export function PostFeatured() {
         alt="Título do post"
       />
 
-      <div className="flex flex-col gap-4 sm:justify-center">
-        <time className="text-slate-600 text-sm/tight" dateTime="2026-06-15">
-          15/06/2026 18:00
-        </time>
-
-        <PostHeading as="h1" url={postLink}>
-          Lorem ipsum dolor sit amet
-        </PostHeading>
-
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. In velit
-          assumenda illo fugit quis eum ipsam distinctio modi incidunt ducimus
-          praesentium earum dicta molestias odit, vel, reiciendis nihil
-          accusantium dignissimos!
-        </p>
-      </div>
+      <PostSummary
+        postHeading="h1"
+        postLink={postLink}
+        createdAt={createdAt}
+        title={post.title}
+        excerpt={post.excerpt}
+      />
     </section>
   );
 }
