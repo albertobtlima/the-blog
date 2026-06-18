@@ -1,25 +1,30 @@
 import { findPostBySlugCached } from "@/lib/post/queries";
-import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 type PostSlugPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateMetadata({
+  params,
+}: PostSlugPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await findPostBySlugCached(slug);
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
+}
+
 export default async function PostSlugPage({ params }: PostSlugPageProps) {
   const { slug } = await params;
-  let post;
 
-  try {
-    post = await findPostBySlugCached(slug);
-  } catch {
-    post = undefined;
-  }
-
-  if (!post) {
-    notFound();
-  }
+  const post = await findPostBySlugCached(slug);
 
   return (
-    <h1 className="text-7xl font-extrabold py-16">Rota dinamica: {slug}</h1>
+    <div>
+      <p>{post.content}</p>
+    </div>
   );
 }
