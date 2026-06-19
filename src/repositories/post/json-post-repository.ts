@@ -24,22 +24,23 @@ export class JsonPostRepository implements PostRepository {
     const jsonContent = await readFile(JSON_POSTS_FILE_PATH, "utf-8");
     const parsedJson = JSON.parse(jsonContent);
     const { posts } = parsedJson;
+
     return posts;
   }
 
   async findAll(): Promise<PostModel[]> {
     await this.simulateWait();
-    console.log("\n", "findAll", "\n");
 
     const posts = await this.readFromDisk();
+
     return posts;
   }
 
   async findAllPublic(): Promise<PostModel[]> {
     await this.simulateWait();
-    console.log("\n", "findAllPublic", "\n");
 
     const posts = await this.readFromDisk();
+
     return posts.filter((post) => post.published);
   }
 
@@ -48,14 +49,16 @@ export class JsonPostRepository implements PostRepository {
     const post = posts.find((post) => post.id === id);
 
     if (!post) throw new Error("Post não encontrado paraID.");
+
     return post;
   }
 
-  async findBySlug(slug: string): Promise<PostModel> {
+  async findBySlugPublic(slug: string): Promise<PostModel> {
     const posts = await this.findAllPublic();
     const post = posts.find((post) => post.slug === slug);
 
     if (!post) throw new Error("Post não encontrado para Slug.");
+
     return post;
   }
 }
