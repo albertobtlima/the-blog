@@ -1,3 +1,8 @@
 "use server";
 
-export async function revalidateAction() {}
+import { revalidateTag } from "next/cache";
+
+export async function revalidateAction() {
+  revalidateTag("posts"); // Home
+  revalidateTag("post-???"); // Single-post
+}
