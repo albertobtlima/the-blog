@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 type AdminPostIdPageProps = {
   params: Promise<{
@@ -11,5 +11,5 @@ export default async function AdminPostIdPage({
 }: AdminPostIdPageProps) {
   const { id } = await params;
 
-  return <div className="py-16 text-6xl">AdminPostIdPage {id}</div>;
+  return <div className='py-16 text-6xl'>AdminPostIdPage {id}</div>;
 }

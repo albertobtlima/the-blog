@@ -1,6 +1,6 @@
-import { JsonPostRepository } from "@/repositories/post/json-post-repository";
-import { drizzleDb } from ".";
-import { postsTable } from "./schemas";
+import { JsonPostRepository } from '@/repositories/post/json-post-repository';
+import { drizzleDb } from '.';
+import { postsTable } from './schemas';
 
 (async () => {
   const jsonPostRepository = new JsonPostRepository();
@@ -15,7 +15,7 @@ import { postsTable } from "./schemas";
     console.log();
   } catch (e) {
     console.log();
-    console.log("Ocorreu um erro...");
+    console.log('Ocorreu um erro...');
     console.log();
     console.log(e);
     console.log();

@@ -1,18 +1,18 @@
-import { postRepository } from "@/repositories/post";
-import { unstable_cache } from "next/cache";
-import { notFound } from "next/navigation";
-import { cache } from "react";
+import { postRepository } from '@/repositories/post';
+import { unstable_cache } from 'next/cache';
+import { notFound } from 'next/navigation';
+import { cache } from 'react';
 
 export const findAllPublicPostsCached = cache(
   unstable_cache(
     async () => {
       return await postRepository.findAllPublic();
     },
-    ["posts"],
+    ['posts'],
     {
-      tags: ["posts"],
-    }
-  )
+      tags: ['posts'],
+    },
+  ),
 );
 
 export const findPublicPostBySlugCached = cache((slug: string) => {
@@ -27,6 +27,6 @@ export const findPublicPostBySlugCached = cache((slug: string) => {
       return post;
     },
     [`post-${slug}`],
-    { tags: [`post-${slug}`] }
+    { tags: [`post-${slug}`] },
   )(slug);
 });
