@@ -21,7 +21,9 @@ export async function SinglePost({ slug }: SinglePostProps) {
           height={720}
           alt={post.title}
         />
+
         <PostHeading url={`/post/${post.slug}`}>{post.title}</PostHeading>
+
         <p>
           {post.author} | <PostDate dateTime={post.createdAt} />
         </p>

@@ -1,6 +1,6 @@
+import { findAllPublicPostsCached } from "@/lib/post/queries/public";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
-import { findAllPublicPostsCached } from "@/lib/post/queries/public";
 
 export async function PostsList() {
   const posts = await findAllPublicPostsCached();
@@ -13,17 +13,23 @@ export async function PostsList() {
         return (
           <div className="flex flex-col gap-4 group" key={post.id}>
             <PostCoverImage
-              src={post.coverImageUrl}
-              href={postLink}
-              alt={post.title}
+              linkProps={{
+                href: postLink,
+              }}
+              imageProps={{
+                width: 1200,
+                height: 720,
+                src: post.coverImageUrl,
+                alt: post.title,
+              }}
             />
 
             <PostSummary
-              postHeading="h2"
               postLink={postLink}
+              postHeading="h2"
               createdAt={post.createdAt}
-              title={post.title}
               excerpt={post.excerpt}
+              title={post.title}
             />
           </div>
         );

@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { PostCoverImage } from "../PostCoverImage";
 import { PostSummary } from "../PostSummary";
 import { findAllPublicPostsCached } from "@/lib/post/queries/public";
@@ -10,25 +9,26 @@ export async function PostFeatured() {
   const postLink = `/post/${post.slug}`;
 
   return (
-    <section
-      className={clsx(
-        "grid grid-cols-1 gap-8 mb-16",
-        "sm:grid-cols-2",
-        "group"
-      )}
-    >
+    <section className="grid grid-cols-1 gap-8 mb-16 sm:grid-cols-2 group">
       <PostCoverImage
-        src={post.coverImageUrl}
-        href={postLink}
-        alt={post.title}
+        linkProps={{
+          href: postLink,
+        }}
+        imageProps={{
+          width: 1200,
+          height: 720,
+          src: post.coverImageUrl,
+          alt: post.title,
+          priority: true,
+        }}
       />
 
       <PostSummary
-        postHeading="h1"
         postLink={postLink}
+        postHeading="h1"
         createdAt={post.createdAt}
-        title={post.title}
         excerpt={post.excerpt}
+        title={post.title}
       />
     </section>
   );

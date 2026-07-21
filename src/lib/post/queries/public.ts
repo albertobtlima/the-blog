@@ -28,5 +28,5 @@ export const findPublicPostBySlugCached = cache((slug: string) => {
     },
     [`post-${slug}`],
     { tags: [`post-${slug}`] }
-  );
+  )(slug);
 });

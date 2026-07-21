@@ -6,20 +6,19 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "The Blog",
+    default: "The blog - Este é um blog com Next.js",
     template: "%s | The Blog",
   },
-  description:
-    "Essa seria a descrição desta página, Este é um blog com Next.js",
+  description: "Essa seria a descrição dessa página.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type RootLayoutProps = {
   children: React.ReactNode;
-}>) {
+};
+
+export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
-    <html lang="pt-BR" className="dark">
+    <html lang="pt-BR">
       <body>
         <Container>
           <Header />
