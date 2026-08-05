@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Bounce, ToastContainer } from "react-toastify";
+import { Bounce, ToastContainer } from 'react-toastify';
 
 export function ToastifyContainer() {
   return (
     <ToastContainer
-      position="top-center"
+      position='top-center'
       autoClose={5000}
       hideProgressBar={false}
       newestOnTop={false}
@@ -13,7 +13,7 @@ export function ToastifyContainer() {
       rtl={false}
       pauseOnFocusLoss
       pauseOnHover
-      theme="light"
+      theme='light'
       transition={Bounce}
     />
   );

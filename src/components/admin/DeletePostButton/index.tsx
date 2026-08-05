@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { deletePostAction } from "@/actions/post/delete-post-action";
-import { Dialog } from "@/components/Dialog";
-import { clsx } from "clsx";
-import { Trash2Icon } from "lucide-react";
-import { useState, useTransition } from "react";
-import { toast } from "react-toastify/unstyled";
+import { deletePostAction } from '@/actions/post/delete-post-action';
+import { Dialog } from '@/components/Dialog';
+import clsx from 'clsx';
+import { Trash2Icon } from 'lucide-react';
+import { useState, useTransition } from 'react';
+import { toast } from 'react-toastify';
 
 type DeletePostButtonProps = {
   id: string;
@@ -32,7 +32,7 @@ export function DeletePostButton({ id, title }: DeletePostButtonProps) {
         return;
       }
 
-      toast.success("Post apagado com sucesso!");
+      toast.success('Post apagado com sucesso!');
     });
   }
 
@@ -40,13 +40,13 @@ export function DeletePostButton({ id, title }: DeletePostButtonProps) {
     <>
       <button
         className={clsx(
-          "text-red-500 cursor-pointer transition",
-          "[&_svg]:w-4 [&_svg]:h-4",
-          "hover:scale-120 hover:text-red-700",
-          "disabled:text-slate-600 disabled:cursor-not-allowed"
+          'text-red-500 cursor-pointer transition',
+          '[&_svg]:w-4 [&_svg]:h-4',
+          'hover:scale-120 hover:text-red-700',
+          'disabled:text-slate-600 disabled:cursor-not-allowed',
         )}
-        title="Apagar post"
         aria-label={`Apagar post: ${title}`}
+        title={`Apagar post: ${title}`}
         onClick={handleClick}
         disabled={isPending}
       >
@@ -56,7 +56,7 @@ export function DeletePostButton({ id, title }: DeletePostButtonProps) {
       {showDialog && (
         <Dialog
           isVisible={showDialog}
-          title="Apagar post ?"
+          title='Apagar post?'
           content={`Tem certeza que deseja apagar o post: ${title}`}
           onCancel={() => setShowDialog(false)}
           onConfirm={handleConfirm}
