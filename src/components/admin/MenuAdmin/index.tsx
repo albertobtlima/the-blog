@@ -1,13 +1,73 @@
+"use client";
+
+import { clsx } from "clsx";
+import {
+  CircleXIcon,
+  FileTextIcon,
+  HouseIcon,
+  MenuIcon,
+  PlusIcon,
+} from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export function MenuAdmin() {
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  const navClasses = clsx(
+    "bg-slate-900 text-slate-100 rounded-lg",
+    "flex flex-col mb-8",
+    "sm:flex-row sm:flex-wrap",
+    "sm:overflow-visible sm:h-auto",
+    !isOpen && "h-10",
+    !isOpen && "overflow-hidden"
+  );
+  const linkClasses = clsx(
+    "[&>svg]:w-4 [&>svg]:h-4 px-4",
+    "flex items-center justify-start gap-2 cursor-pointer",
+    "transition hover:bg-slate-800 rounded-lg",
+    "h-10 shrink-0"
+  );
+  const buttonClasses = clsx(linkClasses, "text-blue-200 italic", "sm:hidden");
+
   return (
-    <nav>
-      <a href="/" target="_blank">
+    <nav className={navClasses}>
+      <button onClick={() => setIsOpen((s) => !s)} className={buttonClasses}>
+        {!isOpen && (
+          <>
+            <MenuIcon />
+            Menu
+          </>
+        )}
+
+        {isOpen && (
+          <>
+            <CircleXIcon />
+            Fechar Menu
+          </>
+        )}
+      </button>
+
+      <a href="/" target="_blank" className={linkClasses}>
+        <HouseIcon />
         Home
       </a>
 
-      <Link href="/admin/post">Posts</Link>
+      <Link href="/admin/post" className={linkClasses}>
+        <FileTextIcon />
+        Posts
+      </Link>
+
+      <Link href="/admin/post/new" className={linkClasses}>
+        <PlusIcon />
+        Criar Post
+      </Link>
     </nav>
   );
 }
