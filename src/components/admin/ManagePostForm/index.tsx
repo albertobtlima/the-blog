@@ -7,25 +7,58 @@ import { MarkdownEditor } from "@/components/MarkdownEditor";
 import { useState } from "react";
 import { ImageUploader } from "../ImageUploader";
 import { UploadIcon } from "lucide-react";
+import { PublicPost } from "@/dto/post/dto";
 
-export function ManagePostForm() {
-  const [contentValue, setContentValue] = useState("Digite o post aqui");
+type ManagePostFormProps = {
+  publicPost?: PublicPost;
+};
+
+export function ManagePostForm({ publicPost }: ManagePostFormProps) {
+  const [contentValue, setContentValue] = useState(publicPost?.content || "");
 
   return (
     <form action="" className="mb-16">
       <div className="flex flex-col gap-6">
-        <InputText labelText="Nome" placeholder="Digite o seu nome" />
-        <InputText labelText="Sobrenome" placeholder="Digite o seu sobrenome" />
-
-        <ImageUploader />
-
-        <InputCheckbox labelText="Aceitar termos" />
+        <InputText
+          labelText="ID"
+          name="id"
+          placeholder="ID gerado automaticamente"
+          type="text"
+          defaultValue={publicPost?.id || ""}
+          readOnly
+        />
 
         <InputText
-          disabled
-          labelText="Endereço"
-          placeholder="Digite o seu endereço"
-          defaultValue="Olá mundo!"
+          labelText="Slug"
+          name="slug"
+          placeholder="Slug gerado automaticamente"
+          type="text"
+          defaultValue={publicPost?.slug || ""}
+          readOnly
+        />
+
+        <InputText
+          labelText="Autor"
+          name="author"
+          placeholder="Digite o nome do autor"
+          type="text"
+          defaultValue={publicPost?.author || ""}
+        />
+
+        <InputText
+          labelText="Título"
+          name="title"
+          placeholder="Digite o título"
+          type="text"
+          defaultValue={publicPost?.title || ""}
+        />
+
+        <InputText
+          labelText="Excerto"
+          name="excerpt"
+          placeholder="Digite o resumo"
+          type="text"
+          defaultValue={publicPost?.excerpt || ""}
         />
 
         <MarkdownEditor
@@ -36,21 +69,21 @@ export function ManagePostForm() {
           setValue={setContentValue}
         />
 
+        <ImageUploader />
+
         <InputText
-          disabled
-          labelText="Endereço"
-          placeholder="Digite o seu endereço"
+          labelText="URL da imagem de capa"
+          name="coverImageUrl"
+          placeholder="Digite a url da imagem"
+          type="text"
+          defaultValue={publicPost?.coverImageUrl || ""}
         />
-        <InputText
-          labelText="Endereço"
-          placeholder="Digite o seu endereço"
-          readOnly
-        />
-        <InputText
-          labelText="Endereço"
-          placeholder="Digite o seu endereço"
-          defaultValue="Olá mundo!"
-          readOnly
+
+        <InputCheckbox
+          labelText="Publicar?"
+          name="published"
+          type="checkbox"
+          defaultChecked={publicPost?.published || false}
         />
 
         <div className="flex items-center justify-center mt-4">
