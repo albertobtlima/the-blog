@@ -5,6 +5,8 @@ import { InputCheckbox } from "@/components/InputCheckbox";
 import { InputText } from "@/components/InputText";
 import { MarkdownEditor } from "@/components/MarkdownEditor";
 import { useState } from "react";
+import { ImageUploader } from "../ImageUploader";
+import { UploadIcon } from "lucide-react";
 
 export function ManagePostForm() {
   const [contentValue, setContentValue] = useState("Digite o post aqui");
@@ -14,6 +16,8 @@ export function ManagePostForm() {
       <div className="flex flex-col gap-6">
         <InputText labelText="Nome" placeholder="Digite o seu nome" />
         <InputText labelText="Sobrenome" placeholder="Digite o seu sobrenome" />
+
+        <ImageUploader />
 
         <InputCheckbox labelText="Aceitar termos" />
 
@@ -50,8 +54,9 @@ export function ManagePostForm() {
         />
 
         <div className="flex items-center justify-center mt-4">
-          <Button type="submit" className="w-md">
-            Enviar
+          <Button type="submit">
+            <UploadIcon />
+            Enviar Post
           </Button>
         </div>
       </div>
