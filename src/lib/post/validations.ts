@@ -47,30 +47,3 @@ export const PostCreateSchema = PostBaseSchema;
 export const PostUpdateSchema = PostBaseSchema.extend({
   // id: z.string().uuid('ID inválido'),
 });
-
-const obj = {
-  id: "afa086e4-53e4-492d-acf2-7c2966d83fcd",
-  slug: "dicas-para-manter-a-saude-mental-em-dia",
-  author: "Marina Duarte",
-  title: "Dicas para manter a saúde mental em dia",
-  excerpt:
-    "Em vez de configurar tudo manualmente, basta criar um arquivo com o nome certo e o Next.js entende que aquilo representa uma página.",
-  content:
-    "Em vez de configurar tudo manualmente, basta criar um arquivo com o nome certo e o Next.js entende que aquilo representa uma página.",
-  file: {
-    size: 0,
-    type: "application/octet-stream",
-    name: "undefined",
-    lastModified: 1786386260026,
-  },
-  coverImageUrl: "/images/bryen_6.png",
-  published: true,
-};
-
-const zodParsedObj = PostCreateSchema.safeParse(obj);
-
-console.log(zodParsedObj);
-
-if (!zodParsedObj.success) {
-  console.log(zodParsedObj.error.format());
-}
