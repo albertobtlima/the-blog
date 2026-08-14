@@ -13,7 +13,6 @@ export function LoginForm() {
     username: "",
     error: "",
   };
-
   const [state, action, isPending] = useActionState(loginAction, initialState);
 
   useEffect(() => {
@@ -21,7 +20,7 @@ export function LoginForm() {
       toast.dismiss();
       toast.error(state.error);
     }
-  });
+  }, [state]);
 
   return (
     <div
